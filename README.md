@@ -75,7 +75,7 @@ http://localhost:3000/api/v1/signup
 - Method POST
 - Request body
 
-```json
+```js
 // the example of body value
 {
   "email": "user1@test.com",
