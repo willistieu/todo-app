@@ -91,6 +91,15 @@ const updateNote = async (req, res) => {
       const token = await authorization.split(" ")[1];
       const userId = await tokendecoded(token);
       if (userId) {
+        if (body.status) {
+          if (
+            body.status !== "NotStarted" ||
+            body.status !== "OnGoing" ||
+            body.status !== "Completed"
+          ) {
+            res.status(400).json({ message: "status isn't accept" });
+          }
+        }
         await noteModel
           .update(body, {
             where: {
