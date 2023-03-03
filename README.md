@@ -122,7 +122,7 @@ http://localhost:3000/api/v1/changepassword
 - Method PUT
 - Request body
 
-```json
+```js
 // the example of body value
 {
   "email": "user1@test.com",
@@ -147,7 +147,7 @@ http://localhost:3000/api/v1/todos
 ```
 - Request body
 
-```json
+```js
 // the example of body value
 { 
     "name": "note title", 
@@ -176,7 +176,7 @@ http://localhost:3000/api/v1/todos/:id
 ```
 - Request body
 
-```json
+```js
 // the example of body value
 { 
     "name": "note title", 
