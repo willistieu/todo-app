@@ -55,7 +55,7 @@ describe("Note controller", () => {
 
   it("Get all note with status is NotStarted", async () => {
     const response = await request(baseURL).get(
-      `/api/v1/todos??status=NotStarted`
+      `/api/v1/todos?status=NotStarted`
     );
     expect(response.statusCode).toBe(200);
   });
