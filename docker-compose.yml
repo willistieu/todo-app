@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - progresDB:/data/postgres
+    environment:
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=todo_db
+volumes:
+  progresDB:
