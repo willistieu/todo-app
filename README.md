@@ -94,7 +94,7 @@ http://localhost:3000/api/v1/signin
 - Method POST
 - Request body
 
-```json
+```js
 // the example of body value
 {
   "email": "user1@test.com",
@@ -104,7 +104,7 @@ http://localhost:3000/api/v1/signin
 
 - Result expectation
 
-```JSON
+```js
 // the example of signin response
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIyMjkwOWE4LTU5NmItNWYzMS05MDJjLTQ2NGRmOTRjNTFjOSIsImlhdCI6MTY3Nzg1NDI3MCwiZXhwIjoxNjc3ODU3ODcwfQ._O81wFb4zk2onu-XN2eQKI4LQOR2VOVr7BgTAqivaBE"
