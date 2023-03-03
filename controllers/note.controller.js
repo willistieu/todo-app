@@ -48,23 +48,35 @@ const getAllnotes = async (req, res) => {
 const deleteNote = async (req, res) => {
   try {
     const { id } = req.params;
-    await noteModel
-      .destroy({
-        where: {
-          id: id,
-        },
-      })
-      .then((result, error) => {
-        if (error) {
-          res.status(400).json(error);
-        } else {
-          if (result === 1) {
-            res.status(200).json({ message: "the note is deleted." });
-          } else {
-            res.status(200).json({ message: "the note doesn't exist." });
-          }
-        }
-      });
+    const authorization = req.headers.authorization;
+    if (authorization) {
+      const token = await authorization.split(" ")[1];
+      const userId = await tokendecoded(token);
+      if (userId) {
+        await noteModel
+          .destroy({
+            where: {
+              id: id,
+              userId: userId,
+            },
+          })
+          .then((result, error) => {
+            if (error) {
+              res.status(400).json(error);
+            } else {
+              if (result === 1) {
+                res.status(200).json({ message: "the note is deleted." });
+              } else {
+                res.status(200).json({ message: "the note doesn't exist." });
+              }
+            }
+          });
+      } else {
+        res.status(400).json({ message: "The request isn't authorization!" });
+      }
+    } else {
+      res.status(400).json({ message: "The request isn't authorization!" });
+    }
   } catch (error) {
     res.status(500).json(error);
   }
@@ -72,22 +84,33 @@ const deleteNote = async (req, res) => {
 
 const updateNote = async (req, res) => {
   try {
-    const id = req.params;
+    const { id } = req.params;
     const body = req.body;
-
-    await noteModel
-      .update(body, {
-        where: {
-          id: id,
-        },
-      })
-      .then((result, error) => {
-        if (error) {
-          res.status(400).json(error);
-        } else {
-          res.status(201).json(result);
-        }
-      });
+    const authorization = req.headers.authorization;
+    if (authorization) {
+      const token = await authorization.split(" ")[1];
+      const userId = await tokendecoded(token);
+      if (userId) {
+        await noteModel
+          .update(body, {
+            where: {
+              id: id,
+              userId: userId,
+            },
+          })
+          .then((result, error) => {
+            if (error) {
+              res.status(400).json(error);
+            } else {
+              res.status(201).json({ message: "The note is updated!" });
+            }
+          });
+      } else {
+        res.status(400).json({ message: "The request isn't authorization!" });
+      }
+    } else {
+      res.status(400).json({ message: "The request isn't authorization!" });
+    }
   } catch (error) {
     res.status(500).json(error);
   }
