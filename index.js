@@ -4,7 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const { connectDB, sequelize } = require('./plugins/db');
 const userRouter = require('./routes/user.route');
-const userModel = require('./models/user.model');
+const noteRouter = require('./routes/note.route');
 
 dotenv.config();
 const app = express()
@@ -17,6 +17,7 @@ app.get('/', async (req, res) => {
   res.send('Todo REST Api!')
 })
 app.use('/api/v1', userRouter);
+app.use('/api/v1', noteRouter);
 
 app.listen(port, async () => {
     console.log(`Todo app listening on port ${port}!`)

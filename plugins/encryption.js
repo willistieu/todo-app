@@ -19,9 +19,17 @@ const tokenBuild = async (text) => {
   });
   return token;
 };
-
+const tokendecoded = (token) => {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY)
+    if (decoded) {
+        return decoded.id
+    } else {
+        return 'Authorization is fail!'
+    }
+}
 module.exports = {
   hashedText,
   hashComparation,
   tokenBuild,
+  tokendecoded
 };
