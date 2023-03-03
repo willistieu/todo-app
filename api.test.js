@@ -57,6 +57,7 @@ describe("Note controller", () => {
     const response = await request(baseURL).get(
       `/api/v1/todos?status=NotStarted`
     );
+    
     expect(response.statusCode).toBe(200);
   });
 
