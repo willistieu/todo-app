@@ -38,6 +38,8 @@ npm install
 
 - Database build with docker compose
 
+    Make sure docker use linux containers
+
 ```
 docker-compose up -d
 ```
@@ -48,7 +50,7 @@ docker-compose up -d
 npm start
 ```
 
-or
+    or
 
 ```
 npm run dev
