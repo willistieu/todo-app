@@ -1,8 +1,25 @@
 version: '3.8'
 services:
+  app:
+    container_name: todo_app
+    image: todo_app:latest
+    restart: always
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    networks:
+      - default
+    environment:
+      - POSTGRES_HOST=postgres_db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=todo_db
+    depends_on:
+      - postgres
   postgres:
     image: postgres:latest
-    container_name: postgres
+    container_name: postgres_db
     ports:
       - '5432:5432'
     volumes:
@@ -11,5 +28,10 @@ services:
       - POSTGRES_PASSWORD=123456
       - POSTGRES_USER=admin
       - POSTGRES_DB=todo_db
+    networks:
+      - default
+    restart: always
 volumes:
   progresDB:
+networks:
+  default:
