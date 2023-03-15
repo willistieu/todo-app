@@ -8,7 +8,7 @@ const noteRouter = require('./routes/note.route');
 
 dotenv.config();
 const app = express()
-const port = 3000
+const port = 3050
 const host = '0.0.0.0'
 app.use(cors());
 app.use(bodyParser.json());
